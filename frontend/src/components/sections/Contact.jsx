@@ -12,7 +12,7 @@ export const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/send-email", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
