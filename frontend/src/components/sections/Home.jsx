@@ -1,4 +1,5 @@
 import { RevealOnScroll } from "../RevealOnScroll";
+import profileImg from "../../assets/profile.jpg";
 
 export const Home = () => {
   return (
@@ -10,7 +11,7 @@ export const Home = () => {
         <div className="text-center z-10 px-4">
           <div className="flex justify-center mb-6">
             <img 
-              src="/profile.jpg" 
+              src={profileImg} 
               alt="Renju R" 
               className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.3)] animate-fade-in transition-transform duration-300 hover:scale-105 hover:border-blue-500/50"
             />

@@ -12,7 +12,8 @@ export const Contact = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/send-email`, {
+      const API_URL = import.meta.env.VITE_API_URL || "https://portfolio-backend-kx5k.onrender.com";
+      const response = await fetch(`${API_URL}/api/send-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
