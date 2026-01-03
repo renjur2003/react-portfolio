@@ -18,7 +18,11 @@ export const Contact = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          from_name: formData.name,
+          reply_to: formData.email,
+          message: formData.message,
+        }),
       });
 
       const result = await response.json();
