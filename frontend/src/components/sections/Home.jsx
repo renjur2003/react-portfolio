@@ -23,7 +23,7 @@ export const Home = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
       <RevealOnScroll>
         <div className="text-center z-10 px-4 relative">
