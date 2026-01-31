@@ -9,7 +9,7 @@ import { Skills } from "./components/sections/Skills";
 import { Services } from "./components/sections/Services";
 import { Projects } from "./components/sections/Projects";
 import { Contact } from "./components/sections/Contact";
-import { AnimatedBackground } from "./components/AnimatedBackground";
+import { StarryBackground } from "./components/StarryBackground";
 import "./index.css";
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
+        <StarryBackground />
         <AnimatedBackground />
 
         <Home />
