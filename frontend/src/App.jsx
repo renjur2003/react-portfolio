@@ -10,6 +10,7 @@ import { Services } from "./components/sections/Services";
 import { Projects } from "./components/sections/Projects";
 import { Contact } from "./components/sections/Contact";
 import { StarryBackground } from "./components/StarryBackground";
+import { AnimatedBackground } from "./components/AnimatedBackground";
 import "./index.css";
 
 function App() {
