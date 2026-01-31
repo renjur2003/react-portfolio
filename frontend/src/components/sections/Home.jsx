@@ -1,21 +1,73 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import profileImg from "../../assets/profile.jpg";
+import { 
+  SiMongodb, SiReact, SiNodedotjs, SiExpress, 
+  SiHtml5, SiCss3, SiJavascript, SiGit, 
+  SiFigma, SiTailwindcss 
+} from "react-icons/si";
 
 export const Home = () => {
+  const icons = [
+    { Icon: SiMongodb, color: "text-green-500" },
+    { Icon: SiReact, color: "text-blue-400" },
+    { Icon: SiNodedotjs, color: "text-green-600" },
+    { Icon: SiExpress, color: "text-gray-200" },
+    { Icon: SiHtml5, color: "text-orange-500" },
+    { Icon: SiCss3, color: "text-blue-500" },
+    { Icon: SiJavascript, color: "text-yellow-400" },
+    { Icon: SiGit, color: "text-red-500" },
+    { Icon: SiFigma, color: "text-purple-500" },
+    { Icon: SiTailwindcss, color: "text-cyan-400" },
+  ];
+
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-black"
     >
       <RevealOnScroll>
-        <div className="text-center z-10 px-4">
-          <div className="flex justify-center mb-6">
-            <img 
-              src={profileImg} 
-              alt="Renju R" 
-              className="w-32 h-32 md:w-48 md:h-48 rounded-full object-cover border-4 border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.3)] animate-fade-in transition-transform duration-300 hover:scale-105 hover:border-blue-500/50"
-            />
+        <div className="text-center z-10 px-4 relative">
+          
+          {/* Orbit Container */}
+          <div className="relative flex justify-center items-center mb-6">
+            
+            {/* Spinning Orbit Ring */}
+            <div className="absolute w-64 h-64 md:w-80 md:h-80 border border-blue-500/10 rounded-full animate-spin-slow">
+              {icons.map(({ Icon, color }, index) => {
+                const angle = (index / icons.length) * 360;
+                // Calculate position on circumference
+                // We use transform in CSS to position them
+                // rotate(angle) -> points outward
+                // translate(radius) -> moves outward
+                // rotate(-angle) -> keeps div upright relative to parent
+                return (
+                  <div
+                    key={index}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    style={{
+                      transform: `rotate(${angle}deg) translate(9rem) rotate(-${angle}deg)`, 
+                      // md:translate(10rem) check responsive in className or style
+                    }}
+                  >
+                    <div className="animate-reverse-spin">
+                      <Icon className={`text-2xl md:text-3xl ${color} drop-shadow-[0_0_5px_rgba(255,255,255,0.3)]`} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          
+            {/* Profile Image (Floating) */}
+            <div className="relative animate-float z-20">
+              <img 
+                src={profileImg} 
+                alt="Renju R" 
+                className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-500/20 shadow-[0_0_40px_rgba(59,130,246,0.2)]"
+              />
+              <div className="absolute inset-0 rounded-full bg-blue-500/10 blur-xl -z-10"></div>
+            </div>
           </div>
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 from-yellow-500 via-yellow-200 to-yellow-600 bg-gradient-to-r bg-clip-text text-transparent leading-right">
             Hi, I'm Renju R
           </h1>
