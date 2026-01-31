@@ -1,5 +1,6 @@
 import { RevealOnScroll } from "../RevealOnScroll";
 import profileImg from "../../assets/profile.jpg";
+import { useState, useEffect } from "react";
 import { 
   SiMongodb, SiReact, SiNodedotjs, SiExpress, 
   SiHtml5, SiCss3, SiJavascript, SiGit, 
@@ -7,6 +8,42 @@ import {
 } from "react-icons/si";
 
 export const Home = () => {
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const toRotate = ["Hi, I'm Renju R", "I Build Scalable Web Apps", "I Create Modern Solutions"];
+  
+  useEffect(() => {
+    let ticker = setInterval(() => {
+        tick();
+    }, typingSpeed);
+
+    return () => clearInterval(ticker);
+  }, [text, isDeleting]);
+
+  const tick = () => {
+    let i = loopNum % toRotate.length;
+    let fullText = toRotate[i];
+    let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+
+    setText(updatedText);
+
+    if (isDeleting) {
+      setTypingSpeed(prevSpeed => prevSpeed / 2);
+    }
+
+    if (!isDeleting && updatedText === fullText) {
+      setIsDeleting(true);
+      setTypingSpeed(2000); // Wait before deleting
+    } else if (isDeleting && updatedText === "") {
+      setIsDeleting(false);
+      setLoopNum(loopNum + 1);
+      setTypingSpeed(150);
+    }
+  };
+
   const icons = [
     { Icon: SiMongodb, color: "text-green-500" },
     { Icon: SiReact, color: "text-blue-400" },
@@ -35,18 +72,12 @@ export const Home = () => {
             <div className="absolute w-64 h-64 md:w-80 md:h-80 border border-blue-500/10 rounded-full animate-spin-slow">
               {icons.map(({ Icon, color }, index) => {
                 const angle = (index / icons.length) * 360;
-                // Calculate position on circumference
-                // We use transform in CSS to position them
-                // rotate(angle) -> points outward
-                // translate(radius) -> moves outward
-                // rotate(-angle) -> keeps div upright relative to parent
                 return (
                   <div
                     key={index}
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     style={{
                       transform: `rotate(${angle}deg) translate(9rem) rotate(-${angle}deg)`, 
-                      // md:translate(10rem) check responsive in className or style
                     }}
                   >
                     <div className="animate-reverse-spin">
@@ -69,7 +100,7 @@ export const Home = () => {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 from-yellow-500 via-yellow-200 to-yellow-600 bg-gradient-to-r bg-clip-text text-transparent leading-right">
-            Hi, I'm Renju R
+             {text}<span className="animate-blink"> |</span> 
           </h1>
 
           <p className="text-gray-400 text-lg mb-8 max-w-lg mx-auto">
