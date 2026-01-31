@@ -11,6 +11,7 @@ import { Projects } from "./components/sections/Projects";
 import { Contact } from "./components/sections/Contact";
 import { StarryBackground } from "./components/StarryBackground";
 import { AnimatedBackground } from "./components/AnimatedBackground";
+import { ScrollProgress } from "./components/ScrollProgress";
 import "./index.css";
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           isLoaded ? "opacity-100" : "opacity-0"
         } text-gray-100`}
       >
+        <ScrollProgress />
         <Navbar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
         <MobileMenu menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
 
